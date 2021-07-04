@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+   <title>Proyecto bdd!</title>
+  	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/">Inicio</a>
+        </li>
+
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  </head>
+  <style>
+    body{
+      background-image: url("https://i.ibb.co/g3ZccrF/fondo.png");
+      height:100%;
+      
+    }
+    .footer {
+    height:40px;
+    margin-top:-40px;
+}
+  </style>
+  <body class="">
+
+    <div class="container mt-2 text-center">
+      <img src="https://lh5.googleusercontent.com/35OjO2LjCNofHV2oHiQgDVjdV8cn3GBTvXDB8lFO8H--jcLaudSM58trKkKaduF7p_iHKfe2ilv7n1h0Qfl6zfPvgChEjn6tGDCZBpMm0K1QphfmS6qpptHF_NCosI2ULT3t3OZH" class="img-fluid" alt="Responsive image">
+    </div>
+ 
+    {% if name=="inicio" %}
+
+    
+    <div class="container border border-dark mt-2">
+
+      <div>
+      <a href="/morosos"><button type="button" class="btn btn-light btn-lg btn-block mt-4">Clientes morosos</button></a>
+
+      <a href="/planes"><button type="button" class="btn btn-light btn-lg btn-block mt-4">Descripcion de planes</button></a>
+
+      <a href="/taller"><button type="button" class="btn btn-light btn-lg btn-block mt-4">Taller mas/menos concurrido</button></a>
+
+
+      <a href="/clientes"><button type="button" class="btn btn-light btn-lg btn-block mt-4">Lista de clientes</button></a>
+
+
+      <a href="/incidentesc"><button type="button" class="btn btn-light btn-lg btn-block mt-4">Clientes con mas incidentes</button></a>
+      </div>
+
+      <h1>Datos del cliente con un RUT</h1>
+      <form class="form-group mt-2" action="/cliente" method = "POST">
+        <input class="form-control w-25" type="text" name="rut" placeholder="Ingrese rut del cliente">
+        <button class="btn btn-light mt-1" type="sub" >Enviar</button>
+      </form>
+
+        <h1>Datos del vehículo de un cliente</h1>
+        <form class="form-group mt-2" action="/vehiculos" method = "POST">
+          <input class="form-control w-25" type="text" name="rut" placeholder="Ingrese rut del cliente">
+          <button type="btn btn-light mt-1" >Enviar</button>
+        </form>
+        <h1>Pagos de un cliente</h1>
+        <form class="form-group mt-2" action="/pagosc" method = "POST">
+          <input class="form-control w-25" type="text" name="rut" placeholder="Ingrese rut del cliente">
+          <button class="btn btn-light mt-1" type="sub" >Enviar</button>
+        </form>
+
+        <h1>Cantidad de incidentes de un cliente</h1>
+        <form class="form-group mt-2" action="/incidentes" method = "POST">
+          <input class="form-control w-25" type="text" name="rut" placeholder="Ingrese rut del cliente">
+          <button class="btn btn-light mt-1" type="sub" >Enviar</button>
+        </form>
+
+        <h1>Antecedentes de un cliente</h1>
+        <form class="form-group mt-2" action="/antecedentes" method = "POST">
+          <input class="form-control w-25" type="text" name="rut" placeholder="Ingrese rut del cliente">
+          <button class="btn btn-light mt-1" type="sub" >Enviar</button>
+        </form>
+
+        <div>
+          <h1>Ganancias/Perdidas entre un periodo</h1>
+
+          <form class="form-group mt-2" action="/periodo" method = "POST">
+            <div>
+              <label for="start">Desde:</label>
+              <input type="date" name="fi">
+            </div>
+            <div>
+              <label for="start">Hasta:</label>
+              <input type="date" name="ff" >
+            </div>
+            <div>
+            
+            <button class="btn btn-light mt-1 mt-2 mb-4" type="sub" >Enviar</button>
+          </div>
+          </form>
+          <h1>Ganancias/Perdidas por Rut</h1>
+
+          <form class="form-group mt-2" action="/periodorut" method = "POST">
+            <input class="form-control w-25" type="text" name="rut" placeholder="Ingrese rut del cliente">
+            <button class="btn btn-light mt-1" type="sub" >Enviar</button>
+          </form>
+      </div>
+
+      </div>
+      <footer class="footer"></footer>
+
+
+
+      {% elif name=='cliente' %}
+      <div class="container">
+        <h1>Datos del cliente</h1>
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Rut del cliente</th>
+              <th scope="col">Nombre del cliente</th>
+              <th scope="col">Direccion</th>
+              <th scope="col">Fecha de nacimiento</th>
+              <th scope="col">Fecha de licencia</th>
+              <th scope="col">Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+          
+            <tr>
+              <th scope="row">{{data[0][0]}}</th>
+              <td>{{data[0][1]}}</td>
+              <td>{{data[0][2]}}</td>
+              <td>{{data[0][3]}}</td>
+              <td>{{data[0][4]}}</td>
+              <td>{{data[0][5]}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      {% elif name=='vehiculos' %}
+      <div class="container">
+        <h1>Datos del cliente</h1>
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Patente</th>
+              <th scope="col">Marca</th>
+              <th scope="col">Modelo</th>
+              <th scope="col">Año</th>
+              <th scope="col">Numero de chasis</th>
+            </tr>
+          </thead>
+          <tbody>
+          
+            <tr>
+              <th scope="row">{{data[0][0]}}</th>
+              <td>{{data[0][1]}}</td>
+              <td>{{data[0][2]}}</td>
+              <td>{{data[0][3]}}</td>
+              <td>{{data[0][4]}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      {% elif name=='pagosc' %}
+      <div class="container">
+        <h1>Pagos</h1>
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Fecha de pago</th>
+              <th scope="col">Monto</th>
+      
+            </tr>
+          </thead>
+          <tbody>
+            {% for i in data %}
+          
+            <tr>
+              <td>{{i[0]}}</td>
+              <td>{{i[1]}}</td>
+
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+
+      {% elif name=='morosos' %}
+      <div class="container">
+        <h1>Clientes con deudas</h1>
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              
+              <th scope="col">Rut del cliente</th>
+              <th scope="col">Nombre del cliente</th>
+              <th scope="col">Direccion</th>
+              <th scope="col">Fecha de nacimiento</th>
+              <th scope="col">Fecha de licencia</th>
+              <th scope="col">Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for i in data %}
+            <tr>
+              <th scope="row">{{i[0]}}</th>
+              <td>{{i[1]}}</td>
+              <td>{{i[2]}}</td>
+              <td>{{i[3]}}</td>
+              <td>{{i[4]}}</td>
+              <td>{{i[5]}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+
+      {% elif name=='incidentes' %}
+      <div class="container">
+        <h1>Cantidad de incidentes</h1>
+
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col"> Cantidad</th>
+              <th scope="col">Codigo incidente</th>
+              <th scope="col">Fecha</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+            <th>{{data[0][0]}}</th>
+            {% for i in data2 %}
+            <td>{{i[0]}}</td>
+            <td>{{i[1]}}</td>
+              
+            {% endfor %}
+          </tr>
+      </tbody>
+    </table>
+
+
+
+
+
+
+       
+      </div>
+
+      {% elif name=='antecedentes' %}
+        
+      <div class="container">
+        <h1>Antecedentes</h1>
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Codigo</th>
+              <th scope="col">Descripcion</th>
+            </tr>
+          </thead>
+          <tbody>
+        {% for i in data %}
+        <tr>
+          <th scope="row">{{i[0]}}</th>
+          <td>{{i[1]}}</td>
+        </tr>
+
+        {% endfor %}
+      </tbody>
+    </table>
+      </div>
+
+
+      {% elif name=='planes' %}
+        
+      <div class="container">
+        <h1>Planes</h1>
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Nombre del plan</th>
+              <th scope="col">Costo</th>
+              <th scope="col">Descripcion</th>
+            </tr>
+          </thead>
+          <tbody>
+        {% for i in data %}
+        <tr>
+          <th scope="row">{{i[0]}}</th>
+          <td>{{i[2]}}</td>
+          <td>{{i[3]}}</td>
+        </tr>
+
+        {% endfor %}
+      </tbody>
+    </table>
+      </div>
+
+      {% elif name=="periodo" %}
+      <div class="container">
+        <h1>Ganancias o perdidas</h1>
+        <p></p>
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Periodo</th>
+              <th scope="col">Ganancias o perdidas</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">{{fi}}  -  {{ff}}</th>
+              <td>{{data[0][0]}}</td>
+            </tr>
+            </tbody>
+            </table>
+            </div>
+
+      {% elif name=="taller" %}
+
+      <div class="container">
+        <h1>Taller mas concurrido</h1>
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Codigo del taller</th>
+              <th scope="col">Cantidad de vehiculos</th>
+            </tr>
+          </thead>
+          <tbody>
+        {% for i in data %}
+        <tr>
+          <th scope="row">{{i[0]}}</th>
+          <td>{{i[1]}}</td>
+        </tr>
+
+        {% endfor %}
+        </tbody>
+      </table>
+      <h1>Taller menos concurrido</h1>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Codigo del taller</th>
+            <th scope="col">Cantidad de vehiculos</th>
+          </tr>
+        </thead>
+        <tbody>
+      {% for i in data2 %}
+      <tr>
+        <th scope="row">{{i[0]}}</th>
+        <td>{{i[1]}}</td>
+      </tr>
+
+      {% endfor %}
+      </tbody>
+    </table>
+        </div>
+
+
+        {% elif name=='modificar' %}
+        <div class="container">
+          <h1>Modificamos</h1>
+        </div>
+
+        {% elif name=='clientes' %}
+
+        <div class="container">
+          <h1>Lista de clientes</h1>
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Rut del cliente</th>
+                <th scope="col">Nombre del cliente</th>
+                <th scope="col">Direccion</th>
+                <th scope="col">Fecha de nacimiento</th>
+                <th scope="col">Fecha de licencia</th>
+                <th scope="col">Estado</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for i in data %}
+              <tr>
+                <th scope="row">{{i[0]}}</th>
+                <td>{{i[1]}}</td>
+                <td>{{i[2]}}</td>
+                <td>{{i[3]}}</td>
+                <td>{{i[4]}}</td>
+                <td>{{i[5]}}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+        {% elif name=='planerror' %}
+
+        <div class="container"><h1>El cliente no posee antecedentes</h1></div>
+      
+        {% elif name=='incidentesc' %}
+        
+        <div class="container">
+          <h1>Clientes con mas incidentes</h1>
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Rut cliente</th>
+                <th scope="col">Nombre cliente</th>
+                <th scope="col">Cantidad</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for i in data %}
+              <tr>
+                <th scope="row">{{i[0]}}</th>
+                <td>{{i[1]}}</td>
+                <td>{{i[2]}}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+        {% elif name=="periodorut" %}
+        <div class="container">
+          <h1>Ganancias o perdidas</h1>
+          <p></p>
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Ganancias o perdidas</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{data[0][0]}}</td>
+              </tr>
+              </tbody>
+              </table>
+              </div>
+
+		        
+  {% endif %}
+
+
+
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>
+
